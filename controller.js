@@ -22,17 +22,19 @@ module.exports = {
       })},
   createtask: (req, res) => {
     let network = req.query.network
-    let amount = req.query.amount
-    
-  },
+    let amountVND = req.query.amount
+    let numberAddress = req.query.number
+    let createTaskNapTien = bg.createtask(network, amountVND, numberAddress);
+    createTaskNapTien.then(function(result){
+      res.send(result);
+      console.log(result);
+    })},
 
   
   getAccPriv: (req, res) => {
     const key = "53053cec45c095ea788c60fab9dafdc463f0801b5bb294e5c7077195da545d27";
-let address = bg.getAccFromPriv(key);
+    let address = bg.getAccFromPriv(key);
     address.then(function(result){
       res.send(result);
-    });
-  
-  }
+    })}
 }
